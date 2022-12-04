@@ -9,7 +9,7 @@ Register paghe
 
 <div class="container">
     <h1 class="h3 mb-3 font-weight-normal"> Please Add User</h1> <br>
-    <form class="form-register"action="" method="POST">
+    <form class="form-register"action="" method="POST" enctype="multipart/form-data">
         {{form.hidden_tag() }}
       
         {{form.first_name.label()}}
@@ -26,6 +26,8 @@ Register paghe
 
         {{form.password2.label()}}
         {{form.password2(class="form-control", placeholder="Confrim Your Password") }}
+
+        <input type="file" name="photo" accept="image/*" class="btn btn-info mt-3">
  <br>
         {{form.submit(class="btn btn-lg btn-block btn-primary")}}
 

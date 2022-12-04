@@ -2,3 +2,82 @@ admin@tech387.com
 career@tech387.com
 Pass123!
  
+
+ 
+class RegisterForm(FlaskForm):
+  def validate_email_address(self, email_address_to_check):
+    email_address = Doctor.query.filter_by(email_address=email_address_to_check.data).first()
+    if email_address:
+      raise ValidationError('Email address already exists! Please try a different email address')
+  first_name = StringField(label='First Name:', validators=[DataRequired()])
+  last_name = StringField(label='Last Name:', validators=[DataRequired()])
+  email_address = StringField(label='Email Address:', validators=[Email(), DataRequired()])
+  password1 = PasswordField(label='Password:', validators=[Length(min=6), DataRequired()])
+  password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'), DataRequired()])
+   
+  submit = SubmitField(label='Add Doctor')
+
+
+
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% block title%}
+Register paghe
+{% endblock%}
+
+{% block content%}
+ 
+<body class="text-center "> 
+
+<div class="container">
+    <h1 class="h3 mb-3 font-weight-normal"> Please Add User</h1> <br>
+    <form class="form-register"action="" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag() }}
+      
+        {{form.first_name.label()}}
+        {{form.first_name(class="form-control", placeholder="First Name") }}
+
+        {{form.last_name.label()}}
+        {{form.last_name(class="form-control", placeholder="Last Name") }}
+
+        {{form.email_address.label()}}
+        {{form.email_address(class="form-control", placeholder="E-mail") }}
+
+        {{form.password1.label()}}
+        {{form.password1(class="form-control", placeholder="Password") }}
+
+        {{form.password2.label()}}
+        {{form.password2(class="form-control", placeholder="Confrim Your Password") }}
+
+        <input type="file" name="file">
+ <br>
+        {{form.submit(class="btn btn-lg btn-block btn-primary")}}
+
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <style>
+           .form-register {
+        color: red;
+    }
+            .form-control {
+                border-bottom-color: red;
+                color: red;
+            }
+        </style>
+        <div style="color: red ;">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+</body>
+{% endblock%}

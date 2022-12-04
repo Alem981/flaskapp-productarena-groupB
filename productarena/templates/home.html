@@ -1,18 +1,26 @@
-{% extends 'base.html' %}
-{% block title %}
-  Product Arena
-{% endblock %}
-{% block content %}
-  <div class="container overflow-hidden p-3 p-md-5 m-md-3 ">
+{% extends 'base.html' %} {% block title %} Product Arena {% endblock %} {%
+block content %}
+<section class="home">
+  <div class="container">
     <div class="row">
-      <h4>Ime i prezime <h4>
-      <p class="font-weight-normal">
-        Razvoj softwera je kao slaganje lego kockica, putem kada se prave programi
-        koji izvrsavaju odredjenu radnju te sluze svrsi. Cilj programiranja nije
-        samo finalizacija zadataka, cilj je da napravljeni kod ima smisao i da 
-        izvrsava ono sto mu je svrha!
-      </p>
+      <div class="info col">
+      
+        <img src="static/images/{{current_user.image}}" class="img-center img-fluid">
+      </div>
+   
+      <div class="col">
+       <span>My Profile</span>
+       <h3 class="">Dr. {{current_user.first_name}}</h3>
+      </div>
     </div>   
-  ss
- 
+    </div> <br>
+    <div class="">
+      {% for patient in patients %}
+             {{ patient.name}}
+             {{patient.time}}
+             {{patient.symptoms}} <br>
+        {% endfor %}
+    </div>
+</section>
+
 {% endblock %}

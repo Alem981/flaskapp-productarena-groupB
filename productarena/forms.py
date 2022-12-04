@@ -1,5 +1,5 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from flask_wtf import FlaskForm 
+from wtforms import StringField, PasswordField, SubmitField, DateField, TimeField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from productarena.models import Doctor
 
@@ -14,9 +14,14 @@ class RegisterForm(FlaskForm):
   email_address = StringField(label='Email Address:', validators=[Email(), DataRequired()])
   password1 = PasswordField(label='Password:', validators=[Length(min=6), DataRequired()])
   password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'), DataRequired()])
-   
   submit = SubmitField(label='Add Doctor')
 
+class AddPatientForm(FlaskForm):
+  username = StringField(label='Patient Name:', validators=[DataRequired()])
+  date=DateField(label='Patient Date:', validators=[DataRequired()])
+  time=TimeField(label='Patient Date:', validators=[DataRequired()])
+  submit = SubmitField(label='Add Patient')
+ 
 
 class LoginForm(FlaskForm):
   email_address = StringField(label='Email:', validators=[DataRequired()])  

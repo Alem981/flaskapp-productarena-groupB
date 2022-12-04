@@ -1,8 +1,9 @@
 from productarena import app
+from datetime import datetime, date, timedelta
 from flask import render_template, redirect, url_for, flash, current_app, request
-from productarena.models import Doctor 
+from productarena.models import Doctor, Patient 
 from productarena import db
-from productarena.forms import RegisterForm, LoginForm 
+from productarena.forms import RegisterForm, LoginForm, AddPatientForm
 from flask_login import login_user, logout_user, login_required, current_user
 import os
 import secrets
@@ -11,10 +12,8 @@ import secrets
 @app.route('/home')
 @login_required
 def home_page():
-    patients=[
-    {'id':1, 'name':'Patient 1', 'symptoms':"Arm pain", 'time':"15:00"},
-    {'id':2, 'name':'Patient 2', 'symptoms':"Leg pain", 'time':"15:00"}
-    ]
+    today = date(2022,12,4)
+    patients=Patient.query.filter_by(date=today).all()
     return render_template('home.html', patients = patients)
 def save_images(photo):
     hash_photo=secrets.token_urlsafe(10)
@@ -45,6 +44,27 @@ def register_page():
            flash(f'Error prilikom registracije: {err_msg}', category='danger')
             
    return render_template('register.html', form = form)
+
+
+@app.route('/add_patient', methods=['GET','POST'])
+def add_patient_page():   
+   form = AddPatientForm()
+   if form.validate_on_submit():
+            photo = save_images(request.files.get('photo'))
+            patient_to_create =Patient(
+            username=form.username.data, 
+            date=form.date.data,         
+            time=form.time.data,  
+            image=photo
+         )
+            db.session.add(patient_to_create)
+            db.session.commit()
+            return redirect(url_for('home_page'))
+   if form.errors !={}:
+         for err_msg in form.errors.values():
+           flash(f'Error prilikom registracije: {err_msg}', category='danger')
+            
+   return render_template('add_patient.html', form = form)
  
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])

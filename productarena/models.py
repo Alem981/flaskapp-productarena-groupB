@@ -25,4 +25,11 @@ class Doctor(db.Model, UserMixin):
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
    
+class Patient(db.Model, UserMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    username = db.Column(db.String(length=50), nullable=False, unique=True)
+    date = db.Column(db.Date)
+    time=db.Column(db.Time())
+    image = db.Column(db.String(120), default='image.jpg')
+    
  

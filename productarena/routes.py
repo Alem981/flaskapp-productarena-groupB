@@ -35,6 +35,7 @@ def save_images(photo):
 
 
 @app.route('/register', methods=['GET','POST'])
+@login_required
 def register_page():   
    form = RegisterForm()
    if form.validate_on_submit():
@@ -57,6 +58,7 @@ def register_page():
 
 
 @app.route('/add_patient', methods=['GET','POST'])
+@login_required
 def add_patient_page():   
    form = AddPatientForm()
    if form.validate_on_submit():

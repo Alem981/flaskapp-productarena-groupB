@@ -58,6 +58,12 @@
         color: black;
     }
     .info{margin-right: 33px;}
+     .title{
+      font-size: 16px;
+    }
+    .top a{
+      padding-left: 12px;        
+          }
   </style>
   <body>
     {% include 'includes/logout_modal.html' %}
@@ -65,12 +71,23 @@
     {% if
       current_user.is_authenticated %}
     <nav class=" container  navbar sticky-top navbar-light bg-light bg-gradient m-md-3">
-      <a href="{{ url_for('home_page') }}">
-      <!--   <img
-          style="max-width: 160px; max-height: 12%"
-          src="https://global-uploads.webflow.com/623afbf7b898f2b9ad81d428/6374c7da9f9cd1b4126034fa_ProductArena_logo%201.svg"
-          alt=""
-      /> --> <h3 class="title">Product Arena</h3></a>
+      <div class="row top">
+        <div class="img">
+          <a href="{{ url_for('home_page') }}" >
+            <img
+            style="max-width: 22px"
+            src="/static/images/logo.png"
+            alt=""
+        /> 
+        </div>
+       <div class="title align-middle">
+        <h3 class="title"> <b>Product</b> Arena</h3>
+      </div>
+      
+    </a>
+  </div>
+
+
       <div id=" navbarNav" class="d-flex">
         <ul class="navbar-nav">
           <li>

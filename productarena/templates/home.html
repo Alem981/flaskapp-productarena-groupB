@@ -29,6 +29,10 @@ block content %}
     <div class="container">
       <a class="nav-link" href="{{ url_for('add_patient_page') }}"><i class="fa fa-solid fa-plus"></i></a>
       <span>Add New Patient</span>
+      {% if current_user.id==2%}
+      <a class="nav-link" href="{{ url_for('register_page') }}"><i class="fa fa-solid fa-plus"></i></a>
+      <span>Add New Doctor</span>
+      {% endif %}
     </div>
     <br><br>
     <p>Patient list for today </p>  
@@ -37,7 +41,7 @@ block content %}
   {% for patient in patients %}
 
   <div class="container">
-    <p>{{ patient.date}} </p>
+    <p>Date: {{ patient.date}} </p>
     <div class="row px-4">
 
       <div class="column-6">
@@ -62,7 +66,7 @@ block content %}
   {% for patient_tomorrow in patients_tomorrow %}
 
   <div class="container">
-    <p>{{ patient_tomorrow.date}} </p>
+    <p>Date: {{ patient_tomorrow.date}} </p>
     <div class="row px-4">
 
       <div class="column-6">
@@ -86,7 +90,7 @@ block content %}
   </div>
   {% for patient_after_tomorrow in patients_after_tomorrow %}
   <div class="container">
-    <p>{{ patient_after_tomorrow.date}} </p>
+    <p>Date: {{ patient_after_tomorrow.date}} </p>
     <div class="row px-4">
       <div class="column-6">
         <img class="p_img" src="static/images/{{ patient_after_tomorrow.image}} ">
@@ -112,7 +116,7 @@ block content %}
   </div>
   {% for singele_patient in all_patients %}
   <div class="container">
-    <p>{{ singele_patient.date}} </p>
+    <p>Date:{{ singele_patient.date}} </p>
     <div class="row px-4">
       <div class="column-6">
         <img class="p_img" src="static/images/{{ singele_patient.image}} ">

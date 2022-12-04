@@ -1,8 +1,4 @@
 admin@tech387.com
 career@tech387.com
 Pass123!
-cd C:\Users\XXXX\Desktop\productarena
-python 
-from productarena.models import db
-db.create()
-doctor1=Doctor(first_name="Jon", last_name="Doe", email_address="career@tech387.com", password_hash="Pass123!")
+ 

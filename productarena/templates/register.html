@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title%}
+Register paghe
+{% endblock%}
+
+{% block content%}
+ 
+<body class="text-center "> 
+
+<div class="container">
+    <h1 class="h3 mb-3 font-weight-normal"> Please Add User</h1> <br>
+    <form class="form-register"action="" method="POST">
+        {{form.hidden_tag() }}
+      
+        {{form.first_name.label()}}
+        {{form.first_name(class="form-control", placeholder="First Name") }}
+
+        {{form.last_name.label()}}
+        {{form.last_name(class="form-control", placeholder="Last Name") }}
+
+        {{form.email_address.label()}}
+        {{form.email_address(class="form-control", placeholder="E-mail") }}
+
+        {{form.password1.label()}}
+        {{form.password1(class="form-control", placeholder="Password") }}
+
+        {{form.password2.label()}}
+        {{form.password2(class="form-control", placeholder="Confrim Your Password") }}
+ <br>
+        {{form.submit(class="btn btn-lg btn-block btn-primary")}}
+
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <style>
+           .form-register {
+        color: red;
+    }
+            .form-control {
+                border-bottom-color: red;
+                color: red;
+            }
+        </style>
+        <div style="color: red ;">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+</body>
+{% endblock%}

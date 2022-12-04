@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+Login Page
+{% endblock %}
+
+{% block content %}
+<style>
+    @media screen and (max-width: 680px) {
+        body {
+            margin-top: 50%;
+        }
+    }
+    .form-signin{color: black;}
+</style>
+
+<body class="text-center">
+    <div class="container"> <br>
+        <form method="POST" class="form-signin">
+            {{ form.hidden_tag() }}
+            <div class="logo-arena" style="height: 80px;">
+                <h3 style="color:black ;">Product Arena</h3>
+             <!--    <img style="max-width: 100%;" class="mb-4"
+                    src="https://global-uploads.webflow.com/623afbf7b898f2b9ad81d428/6374c7da9f9cd1b4126034fa_ProductArena_logo%201.svg"
+                    alt=""> -->
+            </div>
+            <br>
+            {{ form.email_address.label() }}
+            {{ form.email_address(class="form-control", placeholder="Email") }}
+
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="Password") }}
+
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <style>
+           .form-signin { color: red;}
+            .form-control {
+                border-bottom-color: red;
+                color: red;
+            }
+        </style>
+        <div style="color: red ;">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+</body>
+{% endblock %}

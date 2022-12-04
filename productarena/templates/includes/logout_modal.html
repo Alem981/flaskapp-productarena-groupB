@@ -1,0 +1,40 @@
+<style>
+    .modal-content {
+      background-color: white;
+      color: black;
+      margin-top: 50%;}
+      .btn-secondary{ color: black;
+      background-color: transparent; 
+    border: none;} 
+  </style>
+  
+  <!-- More Info -->
+  <div class="modal fade" id="Modal-MoreInfo"
+       
+       aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">
+           LogOut
+         
+          </h5>
+          <button type="button" class="close"
+                  data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-footer">
+          <p>Are you sure you want to log out from the console?</p>
+          <button type="button" class="btn btn-secondary"
+                  data-dismiss="modal">cancel
+          </button>
+        
+  <a class="btn btn-secondary" href="{{ url_for('logout_page') }}">Yes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 

@@ -4,7 +4,7 @@ Register paghe
 {% endblock%}
 
 {% block content%}
- 
+{% if current_user.id==2%}
 <body class="text-center "> 
 
 <div class="container">
@@ -51,6 +51,12 @@ Register paghe
         {% endif %}
         {% endwith %}
     </div>
+    {%else%}
+<div  style="margin: auto ;" class=" container ">
+    <a style="margin: auto ;" class="btn btn-primary" href="{{ url_for('home_page') }}">Home Page</a>
 
+</div>
+    
+{%endif%}
 </body>
 {% endblock%}

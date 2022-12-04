@@ -15,11 +15,14 @@ Register paghe
         {{form.username.label()}}
         {{form.username(class="form-control", placeholder="User Name") }}
 
+        {{form.symptoms.label()}}
+        {{form.symptoms(class="form-control", placeholder="Symptoms ") }}
+
         {{form.date.label()}}
-        {{form.date(class="form-control", placeholder="User Name") }}
+        {{form.date(class="form-control", placeholder="Date") }}
 
         {{form.time.label()}}
-        {{form.time(class="form-control", placeholder="User Name") }}
+        {{form.time(class="form-control", placeholder="Time ") }}
          <input style="background-color:white ;border:none;" type="file" name="photo" accept="image/*" class="btn btn-info mt-3">
  <br>
         {{form.submit(class="btn btn-lg btn-block btn-primary")}}

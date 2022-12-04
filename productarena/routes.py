@@ -7,14 +7,24 @@ from productarena.forms import RegisterForm, LoginForm, AddPatientForm
 from flask_login import login_user, logout_user, login_required, current_user
 import os
 import secrets
+import datetime as dt
 
  
 @app.route('/home')
 @login_required
 def home_page():
-    today = date(2022,12,4)
+    today = dt.date.today()  
     patients=Patient.query.filter_by(date=today).all()
-    return render_template('home.html', patients = patients)
+    tomorrow=dt.date.today()+timedelta(days=1)
+    patients_tomorrow = Patient.query.filter_by(date=tomorrow).all()
+
+    after_tomorrow=dt.date.today()+timedelta(days=2)
+    patients_after_tomorrow = Patient.query.filter_by(date=after_tomorrow).all()
+    
+    all_patients=Patient.query.all()
+
+
+    return render_template('home.html', patients = patients, patients_tomorrow=patients_tomorrow, patients_after_tomorrow=patients_after_tomorrow, all_patients=all_patients)
 def save_images(photo):
     hash_photo=secrets.token_urlsafe(10)
     _, file_extenstion=os.path.splitext(photo.filename)
@@ -53,6 +63,7 @@ def add_patient_page():
             photo = save_images(request.files.get('photo'))
             patient_to_create =Patient(
             username=form.username.data, 
+            symptoms=form.symptoms.data, 
             date=form.date.data,         
             time=form.time.data,  
             image=photo

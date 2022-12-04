@@ -18,6 +18,7 @@ class RegisterForm(FlaskForm):
 
 class AddPatientForm(FlaskForm):
   username = StringField(label='Patient Name:', validators=[DataRequired()])
+  symptoms = StringField(label='symptoms:', validators=[DataRequired()])
   date=DateField(label='Patient Date:', validators=[DataRequired()])
   time=TimeField(label='Patient Date:', validators=[DataRequired()])
   submit = SubmitField(label='Add Patient')

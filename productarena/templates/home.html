@@ -1,57 +1,134 @@
 {% extends 'base.html' %} {% block title %} Product Arena {% endblock %} {%
 block content %}
 <style>
-  .p_img{
-    max-width: 55px;
-    border-radius: 50%;
-    
+  .p_img {
+    width: 60px;
+    border-radius: 80px;   
+  }
+  p{font-weight: 500;
+    line-height: 20px;
+    font-size: 14px;
+   
+  
   }
 </style>
 <section class="home">
   <div class="container">
     <div class="row">
       <div class="info col">
-      
+
         <img src="static/images/{{current_user.image}}" class="img-center img-fluid">
         <hr>
       </div>
-   
+
       <div class="col">
-       <span>My Profile</span>
-       <h3 class="">Dr. {{current_user.first_name}}</h3>
+        <span>My Profile</span>
+        <h3 class="">Dr. {{current_user.first_name}}</h3>
       </div>
-    </div>   
-  <div class="container">
-    <a class="nav-link" href="{{ url_for('add_patient_page') }}"
-    ><i class="fa fa-solid fa-plus"></i
-  ></a>  
-  <span>Add New Patient</span>
+    </div>
+    <div class="container">
+      <a class="nav-link" href="{{ url_for('add_patient_page') }}"><i class="fa fa-solid fa-plus"></i></a>
+      <span>Add New Patient</span>
+    </div>
+    <br><br>
+    <p>Patient list for today </p>  
   </div>
-  <br><br>
-  - Today
-    </div>  
-    
-      {% for patient in patients %}
-      
-      <div class="container">
-        <p>{{ patient.date}}  </p>
-        <div class="row px-4">
-          
-          <div class="column-6">
-          <img class="p_img" src="static/images/{{ patient.image}} ">
-        </div>
+
+  {% for patient in patients %}
+
+  <div class="container">
+    <p>{{ patient.date}} </p>
+    <div class="row px-4">
+
       <div class="column-6">
-          <p>{{ patient.username}}</p>
-          
-          <p>{{ patient.time}} </p>
-        </div>
-        </div>
-          
+        <img class="p_img" src="static/images/{{ patient.image}} ">
       </div>
-               
-            <br>
-        {% endfor %}
-     
+      <div class="column-6">
+        <p>{{ patient.username}}</p>
+
+        <p>{{ patient.time.strftime(" %H:%M")}} * 
+         {{ patient.symptoms }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+  {% endfor %}
+  <div class="container">
+  <p>Tomorrow</p>  
+  </div>
+
+  {% for patient_tomorrow in patients_tomorrow %}
+
+  <div class="container">
+    <p>{{ patient_tomorrow.date}} </p>
+    <div class="row px-4">
+
+      <div class="column-6">
+        <img class="p_img" src="static/images/{{ patient_tomorrow.image}} ">
+      </div>
+      <div class="column-6">
+        <p>{{ patient_tomorrow.username}}</p>
+
+        <p>{{ patient_tomorrow.time.strftime(" %H:%M")}} *
+         {{ patient_tomorrow.symptoms }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+  {% endfor %}
+
+  <div class="container">
+   <p>After Tommorow</p> 
+  </div>
+  {% for patient_after_tomorrow in patients_after_tomorrow %}
+  <div class="container">
+    <p>{{ patient_after_tomorrow.date}} </p>
+    <div class="row px-4">
+      <div class="column-6">
+        <img class="p_img" src="static/images/{{ patient_after_tomorrow.image}} ">
+      </div>
+      <div class="column-6">
+        <p>{{ patient_after_tomorrow.username}}</p>
+
+        <p>{{ patient_after_tomorrow.time.strftime(" %H:%M")}} *
+        {{ patient_after_tomorrow.symptoms }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+  {% endfor %}
+
+  <div class="container">
+    <br>
+    <hr>
+
+    <p>All patients</p>
+  </div>
+  {% for singele_patient in all_patients %}
+  <div class="container">
+    <p>{{ singele_patient.date}} </p>
+    <div class="row px-4">
+      <div class="column-6">
+        <img class="p_img" src="static/images/{{ singele_patient.image}} ">
+      </div>
+      <div class="column-6">
+        <p>{{ singele_patient.username}}</p>
+
+        <p>{{ singele_patient.time.strftime(" %H:%M")}} *{{ singele_patient.symptoms }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+  {% endfor %}
+
 </section>
 
 {% endblock %}
